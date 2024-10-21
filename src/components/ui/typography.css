@@ -1,0 +1,47 @@
+.headline-medium {
+  @apply font-medium;
+  @apply text-2xl;
+}
+
+.title-large {
+  @apply font-semibold;
+  @apply text-lg;
+}
+
+.title-medium {
+  @apply font-medium;
+  @apply text-base;
+}
+
+.title-small {
+  @apply font-normal;
+  @apply text-sm;
+}
+.title-bold {
+  @apply font-semibold;
+  @apply text-base;
+}
+
+.body-normal {
+  @apply font-normal;
+  @apply text-base;
+}
+
+.body-medium {
+  @apply font-medium;
+  @apply text-sm;
+}
+
+.body-small {
+  @apply font-normal;
+  @apply text-xs;
+}
+
+.label-large {
+  @apply font-medium;
+  @apply text-sm;
+}
+.label-bold {
+  @apply font-semibold;
+  @apply text-sm;
+}
