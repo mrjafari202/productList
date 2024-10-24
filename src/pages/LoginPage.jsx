@@ -1,7 +1,7 @@
 import LoginForm from "../components/LoginForm";
 
 function LoginPage() {
-  return <div>
+  return <div className="flex justify-center items-center ">
     <LoginForm/>
   </div>;
 }

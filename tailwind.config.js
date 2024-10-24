@@ -9,7 +9,8 @@ export default {
       colors:{
         matn :'#282828',
         inputBg : '#F2F2F2',
-        btnCreate : '#55A3F0'
+        btnCreate : '#55A3F0',
+        danger : '#F43F5E'
       },
       spacing: {
         0.25: "1px",
