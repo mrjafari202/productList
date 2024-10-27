@@ -2,7 +2,6 @@ import { Dialog, DialogPanel } from "@headlessui/react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import CreateProductForm from "./CreateProductForm";
-import SearchIcon from "./ui/icons/SearchIcon";
 
 export default function CreateProductModal({ isOpen, setIsOpen }) {
     const navigate = useNavigate();

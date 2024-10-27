@@ -13,7 +13,7 @@ const LoginForm = () => {
     const onSubmit = (data) => {
         const { username, password } = data;
 
-        mutate(data, {
+        mutate({ username, password }, {
             onSuccess: (response) => {
                 console.log(response.data);
                 setCookie("token", response.data?.token);

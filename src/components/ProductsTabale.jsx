@@ -5,8 +5,8 @@ import EditeProductModal from './EditeProductModal';
 import DeleteProductModal from './DeleteProductModal';
 
 const ProductsTable = () => {
-    const [isCreateCourseModalOpen, setIsCreateCourseModalOpen] = useState(false);
-    const [isDeleeModalOpen, setIsDeleteModalOpen] = useState(false);
+    const [isEditProductModalOpen, setIsEditProductModalOpen] = useState(false);
+    const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
     return (
         <div className="overflow-x-auto bg-white rounded-3xl ">
@@ -23,21 +23,21 @@ const ProductsTable = () => {
 
                 <tbody>
                     <tr className='border-gray-300'>
-                        <td className='py-4 px-5'> {/* اضافه کردن padding */}
+                        <td className='py-4 px-5'>
                             <p>تیشرت طرح انگولار</p>
                         </td>
-                        <td className='py-4 px-5'> {/* اضافه کردن padding */}
+                        <td className='py-4 px-5'>
                             <p>۲۹۳</p>
                         </td>
-                        <td className='py-4 px-5'> {/* اضافه کردن padding */}
+                        <td className='py-4 px-5'>
                             <p>90 هزار تومان</p>
                         </td>
-                        <td className='py-4 px-5'> {/* اضافه کردن padding */}
+                        <td className='py-4 px-5'>
                             <p>90uf9g9h7895467g974</p>
                         </td>
-                        <td className='py-4 px-5 flex justify-end gap-x-2'> {/* اضافه کردن padding */}
+                        <td className='py-4 px-5 flex justify-end gap-x-2'>
                             <FiEdit className='size-5 text-lime-500' onClick={() => {
-                                setIsCreateCourseModalOpen(true);
+                                setIsEditProductModalOpen(true);
                             }} />
                             <RiDeleteBin5Line className='size-5 text-red-500' onClick={() => {
                                 setIsDeleteModalOpen(true);
@@ -45,7 +45,7 @@ const ProductsTable = () => {
                         </td>
                     </tr>
 
-                    {/* تکرار ردیف‌ها */}
+                    
                     {Array(3).fill().map((_, index) => (
                         <tr key={index} className='border-gray-300'>
                             <td className='py-4 px-5'>
@@ -68,8 +68,8 @@ const ProductsTable = () => {
                     ))}
                 </tbody>
             </table>
-            <EditeProductModal isOpen={isCreateCourseModalOpen} setIsOpen={setIsCreateCourseModalOpen} />
-            <DeleteProductModal isOpen={isDeleeModalOpen} setIsOpen={setIsDeleteModalOpen} />
+            <EditeProductModal isOpen={isEditProductModalOpen} setIsOpen={setIsEditProductModalOpen} />
+            <DeleteProductModal isOpen={isDeleteModalOpen} setIsOpen={setIsDeleteModalOpen} />
 
         </div>
     );

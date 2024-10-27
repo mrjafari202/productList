@@ -1,15 +1,4 @@
-// import { useMutation } from "@tanstack/react-query";
-// import api from "../configs/api";
 
-// const useRegistr = () => {
-
-//     const mutationFn = (data) => { api.post('auth/register', data) }
-
-//     return useMutation({ mutationFn })
-
-// }
-
-// export { useRegistr };
 
 import { useMutation } from "@tanstack/react-query";
 

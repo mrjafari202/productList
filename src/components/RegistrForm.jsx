@@ -4,7 +4,7 @@ import { useRegister } from "../services/mutation";
 import Logo from '../assets/images/Union.png';
 
 const RegistrForm = () => {
-    const { register, handleSubmit, watch, formState: { errors } } = useForm();
+    const { register, handleSubmit, formState: { errors } } = useForm();
     const navigate = useNavigate();
     const { mutate } = useRegister();
 

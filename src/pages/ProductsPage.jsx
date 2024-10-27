@@ -1,12 +1,11 @@
 import ProductsTabale from "../components/ProductsTabale";
 import { AiOutlineProduct } from "react-icons/ai";
 import NavbarProduct from "../components/NavbarProduct";
-import { isMobile } from "react-device-detect";
 import { useState } from "react";
 import CreateProductModal from "../components/CreateProductModal";
 
 function ProductsPage() {
-  const [isCreateCourseModalOpen, setIsCreateCourseModalOpen] = useState(false);
+  const [isCreateProductModalOpen, setIsCreateProductModalOpen] = useState(false);
 
   return (
     <div className="flex flex-col gap-y-10">
@@ -18,7 +17,7 @@ function ProductsPage() {
           <p className="headline-medium  text-matn">مدیریت کالا</p>
         </div>
         <button className="btn bg-btnCreate border-none " onClick={() => {
-          setIsCreateCourseModalOpen(true);
+          setIsCreateProductModalOpen(true);
         }}>
           <p className="text-white body-normal">
             افزودن محصول
@@ -27,7 +26,7 @@ function ProductsPage() {
       </div>
 
       <ProductsTabale />
-      <CreateProductModal isOpen={isCreateCourseModalOpen} setIsOpen={setIsCreateCourseModalOpen} />
+      <CreateProductModal isOpen={isCreateProductModalOpen} setIsOpen={setIsCreateProductModalOpen} />
 
     </div>
   )
