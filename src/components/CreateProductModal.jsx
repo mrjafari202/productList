@@ -36,7 +36,7 @@ export default function CreateProductModal({ isOpen, setIsOpen }) {
                                 overflow-y-auto  
                                 ">
 
-                                    <CreateProductForm />
+                                    <CreateProductForm isOpen={isOpen} setIsOpen={setIsOpen} />
                                 </div>
                             </DialogPanel>
                         </div>

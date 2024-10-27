@@ -2,8 +2,9 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useCreateProduct } from '../services/mutation'; // مسیر هوک به روز شده
+import { Navigate } from 'react-router-dom';
 
-export default function CreateProductForm() {
+export default function CreateProductForm({ isOpen, setIsOpen }) {
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const { mutate, isLoading } = useCreateProduct(); // تغییر نام هوک به useCreateProduct
 
@@ -19,6 +20,7 @@ export default function CreateProductForm() {
                 console.error('Error creating product:', error);
             },
         });
+        
     };
 
     return (
@@ -59,13 +61,14 @@ export default function CreateProductForm() {
                     type="submit"
                     className="btn grow bg-btnCreate border-none"
                     disabled={isLoading} // غیرفعال کردن دکمه در حین بارگذاری
+                    onClick={() => setIsOpen(false)}
                 >
                     <p className="text-white body-normal">ایجاد</p>
                 </button>
                 <button
                     type="button"
                     className="btn grow bg-matn/20 border-none"
-                    onClick={() => reset()} // ریست فرم
+                    onClick={() => setIsOpen(false)} // ریست فرم
                 >
                     <p className="text-matn body-normal">انصراف</p>
                 </button>
