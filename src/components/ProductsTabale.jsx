@@ -4,13 +4,13 @@ import { FiEdit } from "react-icons/fi";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import EditeProductModal from './EditeProductModal';
 import DeleteProductModal from './DeleteProductModal';
-import { ProductQuery } from '../services/queries';
+import {  useProducts } from '../services/queries';
 
 const ProductsTable = () => {
     const [isEditProductModalOpen, setIsEditProductModalOpen] = useState(false);
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
-    const { data: products, isLoading, error } = ProductQuery();
+    const { data: products, isLoading, error } = useProducts();
 
     // بررسی نوع داده‌های برگشتی
     console.log('Products:', products); // این خط را اضافه کنید

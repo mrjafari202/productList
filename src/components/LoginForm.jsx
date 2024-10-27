@@ -5,18 +5,21 @@ import { useLogin } from "../services/mutation";
 import { setCookie } from "../utils/cookie";
 import Logo from '../assets/images/Union.png';
 
+const login = (token)=>{
+    setCookie('token', token)
+}
+
 const LoginForm = () => {
-    const { register, handleSubmit, formState: { errors } } = useForm();
     const navigate = useNavigate();
+
     const { mutate } = useLogin();
 
-    const onSubmit = (data) => {
-        const { username, password } = data;
+    const { register, handleSubmit, formState: { errors } } = useForm();
 
-        mutate({ username, password }, {
+    const onSubmit = (data) => {
+        mutate(data, {
             onSuccess: (response) => {
-                console.log(response.data);
-                setCookie("token", response.data?.token);
+                login(response.data?.token);
                 navigate("/");
             },
             onError: (error) => console.log(error.response.data.message),

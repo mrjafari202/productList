@@ -6,12 +6,11 @@ import api from "../configs/api";
 const fetchProducts = async () => {
     const response = await api.get("/products");
     return response.data;
-  };
+};
 
-const ProductQuery = () => {
-return useQuery({
-    queryKey : ['product'],
-    queryFn: fetchProducts
-})
+export const useProducts = () => {
+    return useQuery({
+        queryKey: ['products'],
+        queryFn: fetchProducts
+    })
 }
-export {ProductQuery};
