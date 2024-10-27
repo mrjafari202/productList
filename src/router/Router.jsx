@@ -6,7 +6,6 @@ import RegistrationPage from "../pages/RegistrationPage";
 import NotFoundPage from "../pages/NotFoundPage";
 
 import { getCookie } from "../utils/cookie";
-import ReactChart from "../pages/ReactChart";
 
 function Router() {
   const token = getCookie("token");
@@ -22,7 +21,6 @@ function Router() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/registration" element={<RegistrationPage />} />
         <Route path="*" element={<NotFoundPage />} />
-        <Route path="/chart" element={<ReactChart/>}/>
       </Routes>
     </BrowserRouter>
   );

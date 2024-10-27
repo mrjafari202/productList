@@ -1,12 +1,23 @@
+// ProductsTable.js
 import React, { useState } from 'react';
 import { FiEdit } from "react-icons/fi";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import EditeProductModal from './EditeProductModal';
 import DeleteProductModal from './DeleteProductModal';
+import { ProductQuery } from '../services/queries';
 
 const ProductsTable = () => {
     const [isEditProductModalOpen, setIsEditProductModalOpen] = useState(false);
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+
+    const { data: products, isLoading, error } = ProductQuery();
+
+    // بررسی نوع داده‌های برگشتی
+    console.log('Products:', products); // این خط را اضافه کنید
+
+    if (isLoading) return <p>در حال بارگذاری...</p>;
+    if (error) return <p>خطا در دریافت داده‌ها</p>;
+
 
     return (
         <div className="overflow-x-auto bg-white rounded-3xl ">
@@ -22,47 +33,27 @@ const ProductsTable = () => {
                 </thead>
 
                 <tbody>
-                    <tr className='border-gray-300'>
-                        <td className='py-4 px-5'>
-                            <p>تیشرت طرح انگولار</p>
-                        </td>
-                        <td className='py-4 px-5'>
-                            <p>۲۹۳</p>
-                        </td>
-                        <td className='py-4 px-5'>
-                            <p>90 هزار تومان</p>
-                        </td>
-                        <td className='py-4 px-5'>
-                            <p>90uf9g9h7895467g974</p>
-                        </td>
-                        <td className='py-4 px-5 flex justify-end gap-x-2'>
-                            <FiEdit className='size-5 text-lime-500' onClick={() => {
-                                setIsEditProductModalOpen(true);
-                            }} />
-                            <RiDeleteBin5Line className='size-5 text-red-500' onClick={() => {
-                                setIsDeleteModalOpen(true);
-                            }} />
-                        </td>
-                    </tr>
-
-                    
-                    {Array(3).fill().map((_, index) => (
+                    {products.data.map((product, index) => (
                         <tr key={index} className='border-gray-300'>
                             <td className='py-4 px-5'>
-                                <p>تیشرت طرح انگولار</p>
+                                <p>{product.name}</p>
                             </td>
                             <td className='py-4 px-5'>
-                                <p>۲۹۳</p>
+                                <p>{product.stock}</p>
                             </td>
                             <td className='py-4 px-5'>
-                                <p>90 هزار تومان</p>
+                                <p>{product.price} تومان</p>
                             </td>
                             <td className='py-4 px-5'>
-                                <p>90uf9g9h7895467g974</p>
+                                <p>{product.id}</p>
                             </td>
                             <td className='py-4 px-5 flex justify-end gap-x-2'>
-                                <FiEdit className='size-5 text-lime-500' />
-                                <RiDeleteBin5Line className='size-5 text-red-500' />
+                                <FiEdit className='size-5 text-lime-500' onClick={() => {
+                                    setIsEditProductModalOpen(true);
+                                }} />
+                                <RiDeleteBin5Line className='size-5 text-red-500' onClick={() => {
+                                    setIsDeleteModalOpen(true);
+                                }} />
                             </td>
                         </tr>
                     ))}
@@ -70,9 +61,9 @@ const ProductsTable = () => {
             </table>
             <EditeProductModal isOpen={isEditProductModalOpen} setIsOpen={setIsEditProductModalOpen} />
             <DeleteProductModal isOpen={isDeleteModalOpen} setIsOpen={setIsDeleteModalOpen} />
-
         </div>
     );
 }
+
 
 export default ProductsTable;
