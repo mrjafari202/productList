@@ -3,18 +3,18 @@ import { FiEdit } from "react-icons/fi";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import EditeProductModal from './EditeProductModal';
 import DeleteProductModal from './DeleteProductModal';
-import { useProducts } from '../services/queries';
+import { useProducts } from '../services/queries'
 
-const ProductsTable = () => {
+const ProductsTable = (page) => {
     const [isEditProductModalOpen, setIsEditProductModalOpen] = useState(false);
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
     const [selectedProduct, setSelectedProduct] = useState(null);
 
-    const { data: products, isLoading, error } = useProducts();
-
+    const { data, isLoading, error } = useProducts(page);
+    console.log(data)
     if (isLoading) return <p>در حال بارگذاری...</p>;
-    if (!products) return <p>محصولی وجود ندارد</p>
+    if (!data.data) return <p>محصولی وجود ندارد</p>
     if (error) return <p>خطا در دریافت داده‌ها</p>;
 
     return (
@@ -31,7 +31,7 @@ const ProductsTable = () => {
                 </thead>
 
                 <tbody>
-                    {products.data.map((product, index) => (
+                    {data?.data.data.map((product, index) => (
                         <tr key={index} className='border-gray-300'>
                             <td className='py-4 px-5'>
                                 <p>{product.name}</p>
@@ -47,12 +47,12 @@ const ProductsTable = () => {
                             </td>
                             <td className='py-4 px-5 flex justify-end gap-x-2'>
                                 <FiEdit className='size-5 text-lime-500' onClick={() => {
-                                    setSelectedProduct(product); 
+                                    setSelectedProduct(product);
                                     setIsEditProductModalOpen(true);
                                 }} />
                                 <RiDeleteBin5Line className='size-5 text-red-500' onClick={() => {
-                                    setSelectedProduct(product); 
-                                    setIsDeleteModalOpen(true); 
+                                    setSelectedProduct(product);
+                                    setIsDeleteModalOpen(true);
                                 }} />
                             </td>
                         </tr>

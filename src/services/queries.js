@@ -2,15 +2,11 @@ import { useQuery } from "@tanstack/react-query";
 
 import api from "../configs/api";
 
+const useProducts = (page) => {
+    const queryFn = () => api.get(`products?page=${page}&limit=10`);
+  const queryKey = ["products", page];
 
-const fetchProducts = async () => {
-    const response = await api.get("/products");
-    return response.data;
+    return useQuery({ queryFn, queryKey });
 };
 
-export const useProducts = () => {
-    return useQuery({
-        queryKey: ['products'],
-        queryFn: fetchProducts
-    })
-}
+export { useProducts };

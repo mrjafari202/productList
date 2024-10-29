@@ -6,6 +6,7 @@ import CreateProductModal from "../components/CreateProductModal";
 
 function ProductsPage() {
   const [isCreateProductModalOpen, setIsCreateProductModalOpen] = useState(false);
+  const [page, setPage] = useState(1);
 
   return (
     <div className="flex flex-col gap-y-10">
@@ -25,7 +26,8 @@ function ProductsPage() {
         </button>
       </div>
 
-      <ProductsTabale />
+      <ProductsTabale page={page} />
+      <button onClick={() => setPage(2)}>go to page #2</button>
       <CreateProductModal isOpen={isCreateProductModalOpen} setIsOpen={setIsCreateProductModalOpen} />
 
     </div>
