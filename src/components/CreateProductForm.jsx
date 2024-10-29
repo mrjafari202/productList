@@ -1,20 +1,19 @@
-// CreateProductForm.jsx
+
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { useCreateProduct } from '../services/mutation'; // مسیر هوک به روز شده
-import { Navigate } from 'react-router-dom';
+import { useCreateProduct } from '../services/mutation'; 
 
-export default function CreateProductForm({ isOpen, setIsOpen }) {
+export default function CreateProductForm({ setIsOpen }) {
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
-    const { mutate, isLoading } = useCreateProduct(); // تغییر نام هوک به useCreateProduct
+    const { mutate, isLoading } = useCreateProduct();
 
-    // تابعی برای مدیریت ارسال فرم
+  
     const onSubmit = (data) => {
         console.log(data)
-        mutate(data, { // فقط data را ارسال کنید
+        mutate(data, { 
             onSuccess: () => {
                 console.log('Product created successfully');
-                reset(); // ریست کردن فرم پس از موفقیت
+                reset(); 
             },
             onError: (error) => {
                 console.error('Error creating product:', error);
@@ -60,7 +59,7 @@ export default function CreateProductForm({ isOpen, setIsOpen }) {
                 <button
                     type="submit"
                     className="btn grow bg-btnCreate border-none"
-                    disabled={isLoading} // غیرفعال کردن دکمه در حین بارگذاری
+                    disabled={isLoading} 
                     onClick={() => setIsOpen(false)}
                 >
                     <p className="text-white body-normal">ایجاد</p>
@@ -68,7 +67,7 @@ export default function CreateProductForm({ isOpen, setIsOpen }) {
                 <button
                     type="button"
                     className="btn grow bg-matn/20 border-none"
-                    onClick={() => setIsOpen(false)} // ریست فرم
+                    onClick={() => setIsOpen(false)} 
                 >
                     <p className="text-matn body-normal">انصراف</p>
                 </button>

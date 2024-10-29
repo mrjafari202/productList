@@ -2,9 +2,31 @@ import { Dialog, DialogPanel } from "@headlessui/react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import Close from "../assets/images/Close.png";
+import { useDeleteProduct } from "../services/mutation";
 
-export default function DeleteProductModal({ isOpen, setIsOpen }) {
+export default function DeleteProductModal({ isOpen, setIsOpen, product }) {
     const navigate = useNavigate();
+
+    const { mutate } = useDeleteProduct();
+    
+    const deleteHandler = (id) => {
+        const data = {
+            ids: [id],
+        };
+        console.log(data);
+
+        mutate(
+            { data },
+            {
+                onSuccess: (data) => {
+                    console.log(data);
+                },
+                onError: (error) => {
+                    console.log(error);
+                },
+            }
+        );
+    }
     return (
         <>
             <AnimatePresence>
@@ -37,12 +59,15 @@ export default function DeleteProductModal({ isOpen, setIsOpen }) {
                                 overflow-y-auto  
                                 ">
                                     <div className=" px-6 py-4 flex justify-center items-center gap-x-3">
-                                        <button className="btn grow bg-danger border-none ">
+                                        <button className="btn grow bg-danger border-none "
+                                            onClick={() => deleteHandler(product.id)}>
                                             <p className="text-white body-normal">
                                                 حذف
                                             </p>
                                         </button>
-                                        <button className="btn grow bg-matn/20 border-none ">
+                                        <button className="btn grow bg-matn/20 border-none "
+                                            onClick={() => setIsOpen(false)}
+                                        >
                                             <p className="text-matn body-normal">
                                                 لغو
                                             </p>

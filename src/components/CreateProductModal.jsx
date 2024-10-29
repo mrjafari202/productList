@@ -1,16 +1,13 @@
 import { Dialog, DialogPanel } from "@headlessui/react";
 import { AnimatePresence, motion } from "framer-motion";
-import { useNavigate } from "react-router-dom";
 import CreateProductForm from "./CreateProductForm";
 
 export default function CreateProductModal({ isOpen, setIsOpen }) {
-    const navigate = useNavigate();
     return (
         <>
             <AnimatePresence>
                 {isOpen && (
                     <Dialog static open={isOpen} onClose={() => setIsOpen(false)} className="relative z-50">
-                        {/* Backdrop with blur effect */}
                         <motion.div
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}

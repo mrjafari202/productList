@@ -4,7 +4,7 @@ import { FiEdit } from "react-icons/fi";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import EditeProductModal from './EditeProductModal';
 import DeleteProductModal from './DeleteProductModal';
-import {  useProducts } from '../services/queries';
+import { useProducts } from '../services/queries';
 
 const ProductsTable = () => {
     const [isEditProductModalOpen, setIsEditProductModalOpen] = useState(false);
@@ -16,8 +16,8 @@ const ProductsTable = () => {
     console.log('Products:', products); // این خط را اضافه کنید
 
     if (isLoading) return <p>در حال بارگذاری...</p>;
+    if (!products) return <p>محصولی وجود ندارد</p>
     if (error) return <p>خطا در دریافت داده‌ها</p>;
-
 
     return (
         <div className="overflow-x-auto bg-white rounded-3xl ">
@@ -39,7 +39,7 @@ const ProductsTable = () => {
                                 <p>{product.name}</p>
                             </td>
                             <td className='py-4 px-5'>
-                                <p>{product.stock}</p>
+                                <p>{product.quantity}</p>
                             </td>
                             <td className='py-4 px-5'>
                                 <p>{product.price} تومان</p>
@@ -55,12 +55,12 @@ const ProductsTable = () => {
                                     setIsDeleteModalOpen(true);
                                 }} />
                             </td>
+                            <DeleteProductModal isOpen={isDeleteModalOpen} setIsOpen={setIsDeleteModalOpen} product={product} />
+                            <EditeProductModal isOpen={isEditProductModalOpen} setIsOpen={setIsEditProductModalOpen} />
                         </tr>
                     ))}
                 </tbody>
             </table>
-            <EditeProductModal isOpen={isEditProductModalOpen} setIsOpen={setIsEditProductModalOpen} />
-            <DeleteProductModal isOpen={isDeleteModalOpen} setIsOpen={setIsDeleteModalOpen} />
         </div>
     );
 }
