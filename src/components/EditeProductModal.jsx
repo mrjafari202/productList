@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import CreateProductForm from "./CreateProductForm";
 import EditeProductForm from "./EditeProductForm";
 
-export default function EditeProductModal({ isOpen, setIsOpen }) {
+export default function EditeProductModal({ isOpen, setIsOpen , product}) {
     return (
         <>
             <AnimatePresence>
@@ -35,7 +35,7 @@ export default function EditeProductModal({ isOpen, setIsOpen }) {
                                 overflow-y-auto  
                                 ">
 
-                                    <EditeProductForm />
+                                    <EditeProductForm product={product} setIsOpen={setIsOpen} />
                                 </div>
                             </DialogPanel>
                         </div>

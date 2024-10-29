@@ -20,6 +20,7 @@ export default function DeleteProductModal({ isOpen, setIsOpen, product }) {
             {
                 onSuccess: (data) => {
                     console.log(data);
+                    setIsOpen(false)
                 },
                 onError: (error) => {
                     console.log(error);

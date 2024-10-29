@@ -1,4 +1,3 @@
-// ProductsTable.js
 import React, { useState } from 'react';
 import { FiEdit } from "react-icons/fi";
 import { RiDeleteBin5Line } from "react-icons/ri";
@@ -10,10 +9,9 @@ const ProductsTable = () => {
     const [isEditProductModalOpen, setIsEditProductModalOpen] = useState(false);
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
-    const { data: products, isLoading, error } = useProducts();
+    const [selectedProduct, setSelectedProduct] = useState(null);
 
-    // بررسی نوع داده‌های برگشتی
-    console.log('Products:', products); // این خط را اضافه کنید
+    const { data: products, isLoading, error } = useProducts();
 
     if (isLoading) return <p>در حال بارگذاری...</p>;
     if (!products) return <p>محصولی وجود ندارد</p>
@@ -49,21 +47,32 @@ const ProductsTable = () => {
                             </td>
                             <td className='py-4 px-5 flex justify-end gap-x-2'>
                                 <FiEdit className='size-5 text-lime-500' onClick={() => {
+                                    setSelectedProduct(product); 
                                     setIsEditProductModalOpen(true);
                                 }} />
                                 <RiDeleteBin5Line className='size-5 text-red-500' onClick={() => {
-                                    setIsDeleteModalOpen(true);
+                                    setSelectedProduct(product); 
+                                    setIsDeleteModalOpen(true); 
                                 }} />
                             </td>
-                            <DeleteProductModal isOpen={isDeleteModalOpen} setIsOpen={setIsDeleteModalOpen} product={product} />
-                            <EditeProductModal isOpen={isEditProductModalOpen} setIsOpen={setIsEditProductModalOpen} />
                         </tr>
                     ))}
                 </tbody>
             </table>
+
+            <EditeProductModal
+                isOpen={isEditProductModalOpen}
+                setIsOpen={setIsEditProductModalOpen}
+                product={selectedProduct}
+            />
+
+            <DeleteProductModal
+                isOpen={isDeleteModalOpen}
+                setIsOpen={setIsDeleteModalOpen}
+                product={selectedProduct}
+            />
         </div>
     );
 }
-
 
 export default ProductsTable;
