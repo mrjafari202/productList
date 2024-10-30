@@ -7,10 +7,11 @@ import ProductsTable from '../components/ProductsTabale'
 function ProductsPage() {
   const [isCreateProductModalOpen, setIsCreateProductModalOpen] = useState(false);
   const [page, setPage] = useState(1); 
+  const [search , setSearch] = useState("");
 
   return (
     <div className="flex flex-col gap-y-10">
-      <NavbarProduct />
+      <NavbarProduct onSearch ={setSearch}/>
 
       <div className='flex justify-between items-center'>
         <div className="flex gap-x-2">
@@ -23,7 +24,7 @@ function ProductsPage() {
       </div>
 
     
-      <ProductsTable page={page} />
+      <ProductsTable page={page} search={search}/>
 
  
       <div className="flex justify-center gap-2 mt-4">

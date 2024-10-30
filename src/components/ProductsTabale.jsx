@@ -5,7 +5,7 @@ import EditeProductModal from './EditeProductModal';
 import DeleteProductModal from './DeleteProductModal';
 import { useProducts } from '../services/queries';
 
-const ProductsTable = ({ page }) => { 
+const ProductsTable = ({ page ,search }) => { 
     const [isEditProductModalOpen, setIsEditProductModalOpen] = useState(false);
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
     const [selectedProduct, setSelectedProduct] = useState(null);
@@ -15,6 +15,10 @@ const ProductsTable = ({ page }) => {
     if (isLoading) return <p>در حال بارگذاری...</p>;
     if (!data?.data) return <p>محصولی وجود ندارد</p>;
     if (error) return <p>خطا در دریافت داده‌ها</p>;
+
+    const filteredProducts = data?.data.data.filter(product =>
+        product.name.toLowerCase().includes(search.toLowerCase())
+    );
 
     return (
         <div className="overflow-x-auto bg-white rounded-3xl">
@@ -29,7 +33,7 @@ const ProductsTable = ({ page }) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {data?.data.data.map((product, index) => (
+                    {filteredProducts.map((product, index) => (
                         <tr key={index} className='border-gray-300'>
                             <td className='py-4 px-5'><p>{product.name}</p></td>
                             <td className='py-4 px-5'><p>{product.quantity}</p></td>

@@ -1,13 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
 import SearchIcon from './ui/icons/SearchIcon'
 
-const NavbarProduct = () => {
+const NavbarProduct = ({ onSearch }) => {
+
+    const searchHandler = (event) => {
+        onSearch(event.target.value)
+    }
     return (
         <div className="flex items-center bg-white py-2 px-4 rounded-xl">
 
             <div className="grow flex gap-x-2">
                 <SearchIcon />
-                <input type="text" placeholder="جستجو  کالا" className="w-full bg-white border-none outline-none text-matn" />
+                <input type="text"  onChange={searchHandler} placeholder="جستجو  کالا" className="w-full bg-white border-none outline-none text-matn" />
             </div>
 
             <div className="divider divider-horizontal"></div>
